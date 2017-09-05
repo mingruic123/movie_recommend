@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+   <body>
+   
+      <h1>{{name}} is not found. Do you mean {{ similar_title }}?</h1>
+	  <form action = "http://localhost:5000/search" method = "POST">
+			<input type="hidden" name="similar_title" value= {{ similar_title }}>
+			<p><input name="choice" type = "submit" value = "Yes" /></p>
+			<p><input name="choice" type = "submit" value = "No" /></p>
+	  </form>
+   </body>
+</html>
