@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html>
+   
+<style>
+form {
+	padding-top: 260px;
+    text-align: center;
+}
+</style>   
+   
    <body>
    
       <form action = "http://localhost:5000/recommend" method = "POST">
-         Search Movie: 
-		 <input type = "text" name = "name" >
-         <input type = "submit" value = "submit" >
+         Movie Recommendation
+		 <p><input type = "text" name = "name"  size="60" style="font-size:12pt;height:30px"></p>
+         <input type = "submit" value = "Search"  size="20">
       </form>
       
    </body>
