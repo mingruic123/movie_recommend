@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
    
-<style>
-form {
+<style type="text/css">
+div.central{
 	padding-top: 260px;
-	text-align: center;
+    text-align: center;
 }
+
+
 </style>   
    
    <body>
-   
+	  <div class="central">
+      <img src="title.png"  alt="Movie_Recommendation" style="width:360px;height:100px;">
       <form action = "http://localhost:5000/recommend" method = "POST">
-         Movie Recommendation
-		 <p><input type = "text" name = "name"  size="60" style="font-size:12pt;height:30px"></p>
-         <input type = "submit" value = "Search"  size="20">
+		 <p><input type = "text" name = "name"  size="70" style="font-size:12pt;height:30px"></p>
+         <input type = "submit" value = "Movie Search">
       </form>
-      
+      </div>
    </body>
+   
 </html>
