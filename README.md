@@ -1,6 +1,6 @@
 # movie_recommend
 
-h3. How to use?
+*How to use?
 
 1. Install Flask and Python
 2. Clone this project on your own computer
