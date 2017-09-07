@@ -9,8 +9,9 @@ import moviedata as m
 
 """Function to recommend movies to an user after the user reviews a movie"""
 def user_recommendation(name, review):
-    if name not in m.dict:
-        similar_title = similar_movie_title(name)
+    title_lower = name.lower()
+    if title_lower not in m.dict:
+        similar_title = similar_movie_title(title_lower)
         return (render_template("similartitle.html", name=name, similar_title=similar_title ), False)
     sim = similarity_matrix(name)
 
@@ -29,13 +30,20 @@ def user_recommendation(name, review):
 
 """Function to return similar movies for an user when the user submit a search request via HTML form"""
 def similar_movies(name, number):
-    if name not in m.dict:
-        similar_title = similar_movie_title(name)
+    title_lower = name.lower()
+    if title_lower not in m.dict:
+        similar_title = similar_movie_title(title_lower)
         return (render_template("similartitle.html", name=name, similar_title=similar_title), False)
     sim = similarity_matrix(name)
     sorted_sim = sorted(sim.items(), key=operator.itemgetter(1), reverse=True)
     all_top = top_movies(sorted_sim, number)
     return (all_top, True)
+
+def auto_suggest(name):
+    title_lower = name.lower()
+    if title_lower not in m.dict:
+        similar_title = similar_movie_title(title_lower)
+        return (render_template("similartitle.html", name=name, similar_title=similar_title), False)
 
 """Return top N(default is 10) movies on the sorted dictionary by similarity"""
 def top_movies(sorted_sim, n=10, good=True):
@@ -68,6 +76,7 @@ def top_movies(sorted_sim, n=10, good=True):
 
 """Create a dictionary of {movie: score} pairs"""
 def similarity_matrix(name):
+    name=name.lower()
     values = {}
     for other in m.dict:
         if name == other:

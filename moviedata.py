@@ -2,7 +2,7 @@ import csv
 
 dict = {}
 def read_data():
-    with open("movie_metadata.csv") as f:
+    with open("data/movie_metadata.csv") as f:
         reader = csv.DictReader(f)
         id = 0
         for row in reader:
