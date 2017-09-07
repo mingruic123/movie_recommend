@@ -10,22 +10,11 @@ def readData():
 
 @app.route('/')
 def index():
-    return render_template('form.html')
+    return render_template('index.html')
 
 
 @app.route('/recommend', methods=['GET', 'POST'])
 def recommend():
-
-    """Receive data from HTML form by POST operation"""
-    if request.method == 'POST':
-        input = request.form
-        title = input['name'].lower()
-        result = engine.similar_movies(title, 10)
-        if result[1] == True:
-            return jsonify(result[0])
-        else:
-            return result
-
     """Receive data from URL by GET operation"""
     if request.method == 'GET':
         title = request.args.get('title').lower()
@@ -36,8 +25,23 @@ def recommend():
         else:
             return result
 
-@app.route('/search', methods=['POST'])
+@app.route('/search', methods=['GET', 'POST'])
 def search():
+    """Receive data from HTML form by POST operation"""
+    if request.method == 'GET':
+        #input = request.form
+        #title = input['name'].lower()
+        title = request.args.get('name')
+        print(title)
+        result = engine.similar_movies(title, 10)
+        if result[1] == True:
+            return jsonify(result[0])
+        else:
+            return result
+
+
+@app.route('/autoSuggest', methods=['POST'])
+def auto_suggest():
     if request.method == 'POST':
         input = request.form
         title = input['similar_title'].lower()
